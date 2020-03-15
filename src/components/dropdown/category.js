@@ -4,29 +4,21 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 
 
- function Category ({}){
-    const [state, setState] = React.useState({
-        category: '',
-        name: 'popular',
-      });
-    
+export default function Category 
+({optionValues,
+    defaultOptionSelected,
+    onOptionChange
+})
+{
       const inputLabel = React.useRef(null);
       const [labelWidth, setLabelWidth] = React.useState(0);
       React.useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
       }, []);
     
-      const handleChange = name => event => {
-        setState({
-          ...state,
-          [name]: event.target.value,
-        });
-      };
-return(
-
-                <FormControl variant="outlined"
-                //  className={classes.formControl}
-                >
+        return (
+            <>
+                <FormControl variant="outlined">
                 <InputLabel 
                 ref={inputLabel} 
                 htmlFor="outlined-age-native-simple">
@@ -34,22 +26,17 @@ return(
                 </InputLabel>
                 <Select
                   native
-                  value={state.age}
-                  onChange={handleChange('category')}
+                  value={defaultOptionSelected}
+                  onChange={onOptionChange}
                   labelWidth={labelWidth}
-                  inputProps={{
-                    name: 'categoryMovies',
-                    id: 'outlined-age-native-simple',
-                  }}
                 >
-                  <option value="popular">Popular</option>
-                  <option value="now_playing">Now Playing</option>
-                  <option value="top_rated">Top rated</option>
-                  <option value="upcoming">Upcoming</option>
+                    {
+                    optionValues.map((option,key)=>(
+                        <option key={key} value={option.value}>{option.label}</option>
+                    ))}
+                  
                 </Select>
               </FormControl>
-
-)
-
+            </>
+);
 }
-export default Category;
