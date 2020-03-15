@@ -1,0 +1,10 @@
+.posterImage{
+    width: 20%;
+}
+.posterContent{
+    width: 80%;
+    padding: 5% 0;
+}
+.posterContentChild{
+    padding: 10% 0;
+}

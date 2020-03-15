@@ -1,17 +1,20 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardMedia from '@material-ui/core/CardContent';
+
+
 import CardContent from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography';
 import { IMAGE_BASE_URL } from '../../config/api_config'
+import "./cardContent.css"
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    marginTop: '2rem'
+    margin: '2rem auto 0 auto',
+    display: 'flex',
+    maxWidth: '80%'
   },
   bullet: {
     display: 'inline-block',
@@ -20,6 +23,8 @@ const useStyles = makeStyles({
   },
   title: {
     fontSize: 14,
+    textAlign:'left',
+    padding:'0 2%'
   },
   pos: {
     marginBottom: 12,
@@ -34,7 +39,6 @@ export default function OutlinedCard({
   popularity
 }) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -43,7 +47,7 @@ export default function OutlinedCard({
         title="Movie Poster"
       />
       <CardContent className="posterContent">
-  
+      <div className="posterContentChild">
         <Typography variant="h5" component="h2">
           {movieName}
         </Typography>
@@ -54,6 +58,7 @@ export default function OutlinedCard({
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {overview}
         </Typography>
+        </div>
       </CardContent>
     </Card>
   );

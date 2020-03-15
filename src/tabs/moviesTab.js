@@ -1,7 +1,8 @@
 import React from 'react';
 import Category from '../components/dropdown/category';
 import OutlinedCard from '../components/listing/cardContent';
-import getMovies from '../services/api.js'
+import getMovies from '../services/movieAPI.js'
+import Pagination from '@material-ui/lab/Pagination';
 
 export class Movies extends React.Component{
     constructor(props) {
@@ -56,6 +57,9 @@ export class Movies extends React.Component{
                         imgPath={eachMovie.poster_path}/>  
                     ))
                 }
+
+                <Pagination disabled
+                count={15} variant="outlined" color="primary" style={{ margin:'1rem auto', width:'fit-content'}} />
                 
             </div>
         );

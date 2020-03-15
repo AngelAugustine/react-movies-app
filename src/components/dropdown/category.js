@@ -18,7 +18,7 @@ export default function Category
     
         return (
             <>
-                <FormControl variant="outlined">
+                <FormControl variant="outlined" style={{marginTop:'1.5rem', marginBottom:'1.5rem'}}>
                 <InputLabel 
                 ref={inputLabel} 
                 htmlFor="outlined-age-native-simple">
