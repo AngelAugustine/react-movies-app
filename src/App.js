@@ -1,9 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Main from './components/containers/Main.js'
-import FullWidthTabs from './tabs/fullWidthTab.js'
-
+import Main from './components/containers/main.js'
 
 function App() {
   return (
@@ -12,9 +9,6 @@ function App() {
         <h1>React Movies App</h1>
       </header>
       <Main />
-
-      <FullWidthTabs />
-      
     </div>
   );
 }

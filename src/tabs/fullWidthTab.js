@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Movies from './moviesTab'
-import Search from './searchTab';
+import SearchTab from './searchTab';
 import Tv from './tvTab'
 
 function TabPanel(props) {
@@ -49,10 +49,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function FullWidthTabs() {
+export default function FullWidthTabs(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
+  // const [state, setState] = React.useState({
+  //   value:1
+  // });
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -87,7 +91,11 @@ export default function FullWidthTabs() {
         <Movies />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <Search />
+          <SearchTab 
+          isLoading={props.isLoading}
+          searchResult={props.searchResult}
+          btnPressed={props.btnPressed}
+          />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <Tv />

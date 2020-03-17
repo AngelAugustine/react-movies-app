@@ -22,11 +22,16 @@ const getStyles = makeStyles(theme => ({
     }
   }))
 
-const Form = props =>  {
-  const [state, setState] = React.useState({
-    type: '',
-    name: 'multi',
-  });
+  export default function Form ({
+    searchQuery,
+      searchType,
+      onInputChange,
+      onSearchSelectChange,
+      onSubmit
+  }) {
+  // const [state, setState] = React.useState({
+  //   type:'multi'
+  // });
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -34,17 +39,26 @@ const Form = props =>  {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  const handleChange = name => event => {
-    setState({
-      ...state,
-      [name]: event.target.value,
-    });
-  };
+  // const handleChange = name => event => {
+  //   setState({
+  //     ...state,
+  //     type: event.target.value
+  //   });
+  //   console.log(this.state.type);
+  // };
+
+  // const onInputChange = value =>{
+  //   setState({
+  //     ...state,
+  //     searchQuery: value
+  //   });
+  //   console.log(this.state.searchQuery);
+  // }
 
     const classes = getStyles()
     return (
         <form className={classes.form}
-        //  onSubmit={props.onSubmit}
+         onSubmit={onSubmit}
          >
         <TextField 
         className={classes.textField}
@@ -52,7 +66,8 @@ const Form = props =>  {
         label="Search" 
         type="search" 
         variant="outlined"
-        // onChange={e => props.onInputChange(e.target.value)}
+        defaultValue=""
+        onChange={onInputChange}
          />
         
         <FormControl variant="outlined"
@@ -62,17 +77,17 @@ const Form = props =>  {
         </InputLabel>
         <Select
           native
-          value={state.type}
-          onChange={handleChange('type')}
+          defaultValue="multi"
+          onChange={onSearchSelectChange}
           labelWidth={labelWidth}
-          inputProps={{
-            name: 'type',
-            id: 'outlined-age-native-simple',
-          }}
+          // inputProps={{
+          //   name: 'type',
+          //   id: 'outlined-age-native-simple',
+          // }}
         >
-          <option value="Multi">Multi</option>
-          <option value="Movies">Movies</option>
-          <option value="Tv">TV</option>
+          <option value="multi">Multi</option>
+          <option value="movie">Movies</option>
+          <option value="tv">TV</option>
         </Select>
       </FormControl>
         
@@ -82,5 +97,3 @@ const Form = props =>  {
       </form> 
     )
 }
- 
-export default Form;
