@@ -12,7 +12,7 @@ export default class SearchTab extends React.Component{
       
 
     render(){
-        const { isLoading, searchResult, btnPressed} = this.props;
+        // const { isLoading, searchResult, btnPressed} = this.props;
         return(
 <>
             {/* {btnPressed && searchResult.length===0 ?
@@ -21,7 +21,7 @@ export default class SearchTab extends React.Component{
              } */}
 
 { 
-        searchResult.map((eachMovie,key)=>(
+        this.props.searchResult.map((eachMovie,key)=>(
                             <OutlinedCard 
                             key={key}
                             overview={eachMovie.overview}

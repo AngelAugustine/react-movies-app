@@ -3,6 +3,7 @@ import FullWidthTabs from '../../tabs/fullWidthTab.js'
 import Form from "../form/search.js"
 import searchAny from '../../services/searchAPI.js';
 
+
 class Main extends React.Component{
     constructor(props) {
         super(props);
@@ -43,6 +44,7 @@ class Main extends React.Component{
                 btnPressed:true
             })
         })
+        
         console.log(this.state.searchResult);
         
     }

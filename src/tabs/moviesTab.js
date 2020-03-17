@@ -4,6 +4,7 @@ import OutlinedCard from '../components/listing/cardContent';
 import getMovies from '../services/movieAPI.js'
 import Pagination from '@material-ui/lab/Pagination';
 
+
 export class Movies extends React.Component{
     constructor(props) {
         super(props);
@@ -27,6 +28,7 @@ export class Movies extends React.Component{
             this.setState({moviesResult:movies
             })
         })
+       
     }
 
     onOptionChange = e =>{

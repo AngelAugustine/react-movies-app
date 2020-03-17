@@ -66,7 +66,7 @@ const getStyles = makeStyles(theme => ({
         label="Search" 
         type="search" 
         variant="outlined"
-        defaultValue=""
+        // defaultValue=""
         onChange={onInputChange}
          />
         
@@ -77,7 +77,7 @@ const getStyles = makeStyles(theme => ({
         </InputLabel>
         <Select
           native
-          defaultValue="multi"
+          // defaultValue="multi"
           onChange={onSearchSelectChange}
           labelWidth={labelWidth}
           // inputProps={{
