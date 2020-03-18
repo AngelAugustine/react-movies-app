@@ -39,21 +39,6 @@ const getStyles = makeStyles(theme => ({
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  // const handleChange = name => event => {
-  //   setState({
-  //     ...state,
-  //     type: event.target.value
-  //   });
-  //   console.log(this.state.type);
-  // };
-
-  // const onInputChange = value =>{
-  //   setState({
-  //     ...state,
-  //     searchQuery: value
-  //   });
-  //   console.log(this.state.searchQuery);
-  // }
 
     const classes = getStyles()
     return (

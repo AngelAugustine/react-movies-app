@@ -2,6 +2,8 @@ import React from 'react';
 import FullWidthTabs from '../../tabs/fullWidthTab.js'
 import Form from "../form/search.js"
 import searchAny from '../../services/searchAPI.js';
+import { APP_KEY, BASE_URL } from '../../config/api_config'
+import axios from "axios";
 
 
 class Main extends React.Component{
@@ -35,10 +37,10 @@ class Main extends React.Component{
         //   this.fetchMovies(e.target.value);
         console.log(this.state.searchType);
     }
-    fetchResults = (e) =>{
+    fetchResults = async (e) =>{
         console.log(this.state.searchQuery,this.state.searchType);
         // const { searchQuery, searchType } = this.state;
-       searchAny(this.state.searchQuery,this.state.searchType)
+      await searchAny(this.state.searchQuery,this.state.searchType)
        .then(result =>{
             this.setState({searchResult:result,
                 btnPressed:true
@@ -46,6 +48,7 @@ class Main extends React.Component{
         })
         
         console.log(this.state.searchResult);
+          
         
     }
 
@@ -61,6 +64,8 @@ render(){
       onSearchSelectChange={this.onSearchSelectChange}
       onSubmit={this.fetchResults}
       />
+
+
       <FullWidthTabs 
           btnPressed={btnPressed}
           isloading={isloading}

@@ -9,16 +9,17 @@ export default class SearchTab extends React.Component{
             
         };
     }
-      
+    
 
     render(){
-        // const { isLoading, searchResult, btnPressed} = this.props;
+        const { isLoading, searchResult, btnPressed} = this.props;
         return(
 <>
-            {/* {btnPressed && searchResult.length===0 ?
+            {btnPressed && searchResult.length===0 ?
             (<div>Sorry No Results Found</div> ): 
-            (<div>Please Enter a search</div> )
-             } */}
+            
+            (<div>Please Initiate a search</div>)
+             }
 
 { 
         this.props.searchResult.map((eachMovie,key)=>(
@@ -35,28 +36,3 @@ export default class SearchTab extends React.Component{
         );
     }
 }
-
-
-// export default function SearchTab ({
-
-// }) {
-//     return(
-//         <div className="searchResultContainer">
-            
-//             <div className="commandDiv">
-//             Please enter a search
-//           </div>
-//           {
-//                     this.state.moviesResult.map((eachMovie,key)=>(
-//                         <OutlinedCard 
-//                         key={key}
-//                         overview={eachMovie.overview}
-//                         movieName={eachMovie.original_title}
-//                         release={eachMovie.release_date}
-//                         popularity={eachMovie.popularity}
-//                         imgPath={eachMovie.poster_path}/>  
-//                     ))
-//                 }
-//         </div>
-//     );
-// }
