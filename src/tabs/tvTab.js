@@ -2,7 +2,7 @@ import React from 'react';
 import Category from '../components/dropdown/category';
 import OutlinedCard from '../components/listing/cardContent';
 import getShows from '../services/showAPI.js'
-import Pagination from '@material-ui/lab/Pagination';
+import Pagination from "../components/containers/pagination";
 
 export class Tv extends React.Component{
     constructor(props) {
@@ -14,7 +14,9 @@ export class Tv extends React.Component{
                 {value:"top_rated", label:"Top rated"},
                 {value:"on_the_air", label:"On the Air"}],
                 TVCategoryByDefault:"popular",
-                showsResult:[]
+                showsResult:[],
+                currentPage:1,
+                postsPerPage:10
         };
     }
     componentDidMount(){
@@ -37,6 +39,16 @@ export class Tv extends React.Component{
     }
 
     render(){
+        const { currentPage, postsPerPage,showsResult}= this.state;
+        
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        const currentPosts = showsResult.slice(indexOfFirstPost,indexOfLastPost);
+        const paginate= (pageNumber)=>{
+            this.setState({
+                currentPage:pageNumber
+            });
+        }
 
         return(
             <div>
@@ -47,7 +59,7 @@ export class Tv extends React.Component{
                 />
 
                 {
-                    this.state.showsResult.map((eachShow,key)=>(
+                    currentPosts.map((eachShow,key)=>(
                         <OutlinedCard 
                         key={key}
                         overview={eachShow.overview}
@@ -58,9 +70,8 @@ export class Tv extends React.Component{
                     ))
                 }
 
-                <Pagination disabled
-                count={15} variant="outlined" color="primary" style={{ margin:'1rem auto', width:'fit-content'}} />
-                
+        <Pagination postsPerPage={postsPerPage} totalPosts={showsResult.length} 
+        paginate={paginate} /> 
             </div>
         );
     }

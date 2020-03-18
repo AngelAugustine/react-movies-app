@@ -2,7 +2,7 @@ import React from 'react';
 import Category from '../components/dropdown/category';
 import OutlinedCard from '../components/listing/cardContent';
 import getMovies from '../services/movieAPI.js'
-import Pagination from '@material-ui/lab/Pagination';
+import Pagination from "../components/containers/pagination";
 
 
 export class Movies extends React.Component{
@@ -15,7 +15,10 @@ export class Movies extends React.Component{
                 {value:"top_rated", label:"Top rated"},
                 {value:"upcoming", label:"Upcoming"}],
                 CategoryByDefault:"popular",
-                moviesResult:[]
+                moviesResult:[],
+                currentPage:1,
+                postsPerPage:10
+
         };
     }
     componentDidMount(){
@@ -30,6 +33,7 @@ export class Movies extends React.Component{
         })
        
     }
+    
 
     onOptionChange = e =>{
         this.setState({
@@ -39,7 +43,16 @@ export class Movies extends React.Component{
     }
 
     render(){
-
+        const { currentPage, postsPerPage,moviesResult}= this.state;
+        
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        const currentPosts = moviesResult.slice(indexOfFirstPost,indexOfLastPost);
+        const paginate= (pageNumber)=>{
+            this.setState({
+                currentPage:pageNumber
+            });
+        }
         return(
             <div>
                 <Category 
@@ -49,7 +62,7 @@ export class Movies extends React.Component{
                 />
 
                 {
-                    this.state.moviesResult.map((eachMovie,key)=>(
+                    currentPosts.map((eachMovie,key)=>(
                         <OutlinedCard 
                         key={key}
                         overview={eachMovie.overview}
@@ -60,10 +73,10 @@ export class Movies extends React.Component{
                     ))
                 }
 
-                <Pagination disabled
-                count={15} variant="outlined" color="primary" style={{ margin:'1rem auto', width:'fit-content'}} />
-                
-            </div>
+        <Pagination postsPerPage={postsPerPage} totalPosts={moviesResult.length} 
+        paginate={paginate} /> 
+        
+        </div>
         );
     }
 }

@@ -38,9 +38,10 @@ class Main extends React.Component{
         console.log(this.state.searchType);
     }
     fetchResults = async (e) =>{
+      e.preventDefault();
         console.log(this.state.searchQuery,this.state.searchType);
         // const { searchQuery, searchType } = this.state;
-      await searchAny(this.state.searchQuery,this.state.searchType)
+      searchAny(this.state.searchQuery,this.state.searchType)
        .then(result =>{
             this.setState({searchResult:result,
                 btnPressed:true
